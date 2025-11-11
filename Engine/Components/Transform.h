@@ -1,12 +1,11 @@
 #pragma once
-#include "../math/Vector2D.h"
-#include "../math/Quat2D.h"
-#include "../math/Matrix3x3.h"
-class Transform{
+#include "../Math/Math.h"
+#include "Component.h"
+using namespace Math;
+class Transform: public Component{
     public:
         Vector2D position;
         Quat2D rotation;
-
 
         Transform(const Vector2D& position = Vector2D{}, const Quat2D& rotation = Quat2D{}): position(position), rotation(rotation) {}
         

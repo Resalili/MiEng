@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Vector2D.h"
 
+/// @brief Структура для представлення 3x3 матриці (2D трансформації)
 struct Matrix3x3 {
     float m[3][3];
     
@@ -66,3 +67,4 @@ struct Matrix3x3 {
         };
     }
 };
+
