@@ -14,54 +14,20 @@ class Actor {
     public:
         virtual ~Actor() = default;
 
-        template<typename T, typename... Args>
-        T* AddComponent(Args&&... args) {
-            static_assert(std::is_base_of<Component, T>::value, "T must inherit from Component");
+        AddComponent(Args&&... args) {
 
-            auto Comp = std::make_unique<T>(std::forward<Args>(args)...);
-            Comp->Actor = this;
-            Comp->OnAdd(*this);
 
-            T* Ptr = Comp.get();
-            components[std::type_index(typeid(T))] = std::move(Comp);
-            return Ptr;
-        }
+        T GetComponent()
+    
+        bool RemoveComponent() 
 
-        template<typename T>
-        T* GetComponent() {
-            auto It = components.find(std::type_index(typeid(T)));
-            if (It != components.end())
-                return dynamic_cast<T*>(It->second.get());
-            return nullptr;
-        }
+        bool HasComponent()
+       
+        virtual void Tick(float DeltaTime)
 
-        template<typename T>
-        bool RemoveComponent() {
-            auto It = components.find(std::type_index(typeid(T)));
-            if (It != components.end()) {
-                components.erase(It);
-                return true;
-            }
-            return false;
-        }
+        virtual void OnDestroy()
 
-        std::vector<Component*> GetComponents() {
-            std::vector<Component*> Result;
-            Result.reserve(components.size());
-            for (auto& [_, Comp] : components) {
-                Result.push_back(Comp.get());
-            }
-            return Result;
-        }
-        virtual void Setup() {
-            for (auto& [_, Comp] : components)
-                Comp->OnAdd(*this);
-        }
-        virtual void Tick(float DeltaTime) {
-            for (auto& [_, Comp] : components)
-                Comp->Tick(DeltaTime);
-        }
-        virtual void OnDestroy() {
-            components.clear();
-        }
+        virtual void OnCreate()
+        
+        v
 };
