@@ -2,6 +2,7 @@
 #include <cmath>
 
 
+
 struct Vector2D {
     float x, y;
 
@@ -42,4 +43,5 @@ struct Vector2D {
     Vector2D operator*(float scalar) const {
         return Vector2D{x * scalar, y * scalar};
     }
+
 };

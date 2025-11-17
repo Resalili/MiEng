@@ -7,10 +7,12 @@ Actor::Actor() {
     OnCreate();
 }
 
+
 template<typename T>
 bool Actor::HasComponent() {
     return components.find(typeid(T)) != components.end();
 }
+
 
 template<typename T>
 T* Actor::GetComponent() {
@@ -19,6 +21,7 @@ T* Actor::GetComponent() {
         return static_cast<T*>(it->second.get());
     return nullptr;
 }
+
 
 template<typename T, typename... Args>
 Actor::AddComponent(Args&&... args) {
@@ -40,9 +43,6 @@ Actor::Tick(float DeltaTime) {
         pair.second->Tick(DeltaTime);
     }
 }
-
-
-
 
 
 Actor::~Actor() {
