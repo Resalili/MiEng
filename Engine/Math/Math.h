@@ -8,18 +8,18 @@
 namespace Math {
 
     /// @brief Обчислює напрямок (нормалізований вектор) від точки `from` до `to`
-    inline Vector2D DirectionTo(const Vector2D& from, const Vector2D& to) {
+    inline Vector2D DirTo(const Vector2D& from, const Vector2D& to) {
         return (to - from).normalized();
     }
 
     /// @brief Повертає евклідову відстань між точками `a` та `b`
-    inline float Distance(const Vector2D& a, const Vector2D& b) {
+    inline float Dist(const Vector2D& a, const Vector2D& b) {
         return (b - a).mod();
     }
 
     /// @brief Обчислює кут (в радіанах) між векторами `a` та `b`
     /// @note Повертає значення з діапазону [-π, π]
-    inline float AngleBetween(const Vector2D& a, const Vector2D& b) {
+    inline float VecAng(const Vector2D& a, const Vector2D& b) {
         return std::atan2(Vector2D::cross(a, b), a * b); // atan2(cross, dot)
     }
 
